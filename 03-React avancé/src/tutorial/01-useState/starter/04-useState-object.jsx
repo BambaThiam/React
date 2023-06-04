@@ -12,11 +12,19 @@ const UseStateObject = () => {
   const [age, setAge] = useState(34)
   const [hobby, setHobby] = useState('computer vision')
 
+  // const changePersonne = () => {
+  //   data.map((person) => {
+  //     setName(person.name)
+  //     setAge(person.age)
+  //     setHobby(person.hobby)
+  //   })
+  // }
+
   const changePersonne = () => {
     data.map((person) => {
-      setName(person.name)
-      setAge(person.age)
-      setHobby(person.hobby)
+      setName('Fatou')
+      setAge(36)
+      setHobby('couture')
     })
   }
 
@@ -26,19 +34,10 @@ const UseStateObject = () => {
         <h2>Nom : {name}</h2>
         <h2>Age : {age}</h2>
         <h2>Hobby : {hobby}</h2>
-        <button onClick={changePersonne}>change</button>
+        <button className="btn" onClick={changePersonne}>
+          change
+        </button>
       </div>
-
-      {/* {data.map((person) => {
-        return (
-          <div>
-            <h2>Nom : {name}</h2>
-            <h2>Age : {age}</h2>
-            <h2>Hobby : {hobby}</h2>
-            <button onClick={() => changePersonne()}>change</button>
-          </div>
-        )
-      })} */}
     </div>
   )
 }
