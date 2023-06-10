@@ -6,21 +6,22 @@ const FetchData = () => {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
-    const fetchdata = async () => {
+    const fetchData = async () => {
       try {
         const response = await fetch(url)
+        // console.log(response)
         const users = await response.json()
+        // console.log(users)
         setUsers(users)
       } catch (error) {
         console.log(error)
       }
     }
-    fetchdata()
+    fetchData()
   }, [])
-
   return (
     <section>
-      <h3>Github users</h3>
+      <h3>github users name</h3>
       <ul className="users">
         {users.map((user) => {
           const { id, login, avatar_url, html_url } = user
@@ -38,4 +39,5 @@ const FetchData = () => {
     </section>
   )
 }
+
 export default FetchData
