@@ -1,8 +1,6 @@
-import { useContext } from 'react'
-import { NavbarContext } from './Navbar'
-import { useAppContext } from './Navbar'
-const UserContainer = () => {
-  const { user, logout } = useAppContext()
+import React from 'react'
+
+const UserContainer = ({ user, logout }) => {
   return (
     <div className="user-container">
       {user ? (
@@ -18,4 +16,5 @@ const UserContainer = () => {
     </div>
   )
 }
+
 export default UserContainer
