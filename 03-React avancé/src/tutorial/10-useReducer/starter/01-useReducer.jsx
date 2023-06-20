@@ -1,7 +1,6 @@
 import { useReducer } from 'react'
 import { data } from '../../../data'
 
-// on préferera partir sur des variables pour éviter des erreurs, fautes de saisies
 const CLEAR_LIST = 'CLEAR_LIST'
 const RESET_LIST = 'RESET_LIST'
 const REMOVE_ITEM = 'REMOVE_ITEM'
@@ -18,17 +17,25 @@ const reducer = (state, action) => {
   if (action.type === RESET_LIST) {
     return { ...state, people: data }
   }
+  if (action.type === REMOVE_ITEM) {
+    let newPeople = state.people.filter(
+      (person) => person.id !== action.payload.id
+    )
 
-  // Si l'action ne correpond à aucune des conditions
-  // return state
-  // on peut retourner une erreur (type d'action ne match pas) si nous n'attrapons pas le réducteur
-  throw new Error(`No Matching "${action.type}" - action type`)
+    return { ...state, people: newPeople }
+  }
+
+  return state
 }
 
 const ReducerBasics = () => {
   const [state, dispatch] = useReducer(reducer, defaultState)
 
-  const removeItem = (id) => {}
+  const removeItem = (id) => {
+    //dispatch({ type: REMOVE_ITEM, id);
+    // la convention voudrait d'appelait la propriété id par payload(charge utile) => id est dans payload (=> payload.id)
+    dispatch({ type: REMOVE_ITEM, payload: { id } })
+  }
 
   const clearList = () => {
     dispatch({ type: CLEAR_LIST })
@@ -68,9 +75,6 @@ const ReducerBasics = () => {
           clear
         </button>
       )}
-      <button className="btn" style={{ marginTop: '2rem' }} onClick={resetList}>
-        reset
-      </button>
     </div>
   )
 }
